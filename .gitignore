@@ -6,3 +6,6 @@
 /java-algorithms/.gradle/5.2.1/fileHashes/fileHashes.lock
 /java-algorithms/.gradle/5.2.1/gc.properties
 /java-algorithms/.gradle/vcs-1/gc.properties
+/build/
+/gradle/
+/.idea/
