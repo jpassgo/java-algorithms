@@ -50,7 +50,7 @@ public class HashTable {
     private int hash(String key) {
         int hash = 7;
         for (int i = 0; i < key.length(); i++) {
-            hash = hash*31 + key.charAt(i);
+            hash = hash*21 + key.charAt(i);
         }
         return hash;
     }
