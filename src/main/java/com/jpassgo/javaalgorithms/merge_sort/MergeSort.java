@@ -13,7 +13,7 @@ public class MergeSort {
         merge(array, left, mid, right);
     }
 
-    private void merge(int[] array, int left, int mid, int right) {
+    private static void merge(int[] array, int left, int mid, int right) {
 
         int leftArray[] = Arrays.copyOfRange(array, left, mid);
         int rightArray[] = Arrays.copyOfRange(array, mid+1, right);
