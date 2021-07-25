@@ -1,14 +1,16 @@
 package com.jpassgo.javaalgorithms.stacks_and_queues;
 
-import java.lang.reflect.Array;
-
 public class Stack<E extends Comparable> {
 
-    private E[] elements;
+    private Object[] elements;
     private int size;
 
-    public Stack(Class<E> clazz) {
-        elements = (E[]) Array.newInstance(clazz, 10000);
+    public Stack() {
+        elements = new Object[10000];
+    }
+
+    public Stack(int capacity) {
+        elements = new Object[capacity];
     }
 
     public void push(E element) {
@@ -23,20 +25,20 @@ public class Stack<E extends Comparable> {
         }
     }
 
-    public <E extends Comparable> int search(E o) throws Exception {
+    public <E extends Comparable> int search(E o)  {
         for (int i = 0; i <= size; i++) {
-            if(elements[i].compareTo(o) == 0) {
+            if(elements[i].equals(o)) {
                 return i;
             }
         }
-        throw new Exception("Element not found");
+        return 0;
     }
 
-    public E peak() {
+    public Object peak() {
         return elements[size];
     }
 
-    public E pop() {
+    public Object pop() {
         return elements[size--];
     }
 }
