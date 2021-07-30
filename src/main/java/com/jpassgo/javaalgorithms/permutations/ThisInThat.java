@@ -11,6 +11,12 @@ public class ThisInThat {
      *
      */
 
+    /**
+     * Loop over each character in the second string. As soon as you find a character that exists in the first string
+     * grab the index of the current string and then create a temporary copy of the first string. Remove the character
+     * that is found in both strings from the temporary copy and then rinse and repeat for the next 3 contiguous
+     * characters. Once done if the copy string is empty increment the counter.
+     */
     public static void main(String[] args) {
         String firstString = "abbc";
         String secondString = "cbabadcbbabbcbabaabccbabc";
