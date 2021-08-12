@@ -1,11 +1,10 @@
 package com.jpassgo.javaalgorithms.trees;
 
-import java.util.List;
-
 public class Node<T extends Comparable<T>> {
 
     private Object value;
-    private List<Node<T>> children;
+    private Node leftChild;
+    private Node rightChild;
 
     public <T extends Comparable<T>> Node(T value) {
         this.value = value;
@@ -19,11 +18,19 @@ public class Node<T extends Comparable<T>> {
         this.value = value;
     }
 
-    public List<Node<T>> getChildren() {
-        return children;
+    public Node getLeftChild() {
+        return leftChild;
     }
 
-    public void setChildren(List<Node<T>> children) {
-        this.children = children;
+    public void setLeftChild(Node leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public Node getRightChild() {
+        return rightChild;
+    }
+
+    public void setRightChild(Node rightChild) {
+        this.rightChild = rightChild;
     }
 }
