@@ -15,7 +15,7 @@ class NodeTest {
     @Test
     void node() {
         Node<String> node = new Node("test");
-        assertThat(node.getValue()).isEqualTo("test");
+        assertThat((String) node.getValue()).isEqualTo("test");
     }
 
     @Test
