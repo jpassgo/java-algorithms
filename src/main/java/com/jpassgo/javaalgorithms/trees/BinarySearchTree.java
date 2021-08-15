@@ -42,18 +42,15 @@ public class BinarySearchTree {
     }
 
     private <T extends Comparable> boolean contains(Node currentNode, Node nodeToFind) {
-
-            if(currentNode.getValue().compareTo(nodeToFind.getValue()) == 0) {
-                return true;
-            }
-            if(isLessThanCurrentNode(currentNode, nodeToFind)) {
-                return contains(currentNode.getLeftChild(), nodeToFind);
-            }
-            if(isGreaterThanCurrentNode(currentNode, nodeToFind)) {
-                return contains(currentNode.getRightChild(), nodeToFind);
-            }
-
-        return false;
+        if(currentNode == null) {
+            return false;
+        }
+        if(currentNode.getValue().compareTo(nodeToFind.getValue()) == 0) {
+            return true;
+        }
+        return isLessThanCurrentNode(currentNode, nodeToFind) ?
+                contains(currentNode.getLeftChild(), nodeToFind) :
+                contains(currentNode.getRightChild(), nodeToFind);
     }
 
     public  <T extends Comparable> void preorder(Node node, T value) {
