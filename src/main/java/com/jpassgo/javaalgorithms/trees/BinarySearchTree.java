@@ -18,27 +18,30 @@ public class BinarySearchTree {
         if(isNodeNull(this.root)) {
             this.root = new Node(value);
         } else {
-            recursiveInsert(this.root, node);
-        }
-    }
-
-    public <T extends Comparable> void recursiveInsert(Node current, Node newNode) {
-        if(isLessThanCurrentNode(current, newNode)) {
-            if(!isLeftChildPresent(current)) current.setLeftChild(newNode);
-            else {
-                recursiveInsert(current.getLeftChild(), newNode);
-            }
-        } else if(isGreaterThanCurrentNode(current, newNode)) {
-            if(!isRightChildPresent(current)) current.setRightChild(newNode);
-            else {
-                recursiveInsert(current.getRightChild(), newNode);
-            }
+            insert(this.root, node);
         }
     }
 
     public <T extends Comparable> boolean contains(T value) {
-        Node nodeToFind = new Node(value);
-        return contains(this.root, nodeToFind);
+        return contains(this.root,  new Node(value));
+    }
+
+    public <T extends Comparable> T delete(T value) {
+        return delete(this.root, new Node(value));
+    }
+
+    private <T extends Comparable> void insert(Node current, Node newNode) {
+        if(isLessThanCurrentNode(current, newNode)) {
+            if(!current.isLeftChildPresent()) current.setLeftChild(newNode);
+            else {
+                insert(current.getLeftChild(), newNode);
+            }
+        } else if(isGreaterThanCurrentNode(current, newNode)) {
+            if(!current.isRightChildPresent()) current.setRightChild(newNode);
+            else {
+                insert(current.getRightChild(), newNode);
+            }
+        }
     }
 
     private <T extends Comparable> boolean contains(Node currentNode, Node nodeToFind) {
@@ -53,11 +56,64 @@ public class BinarySearchTree {
                 contains(currentNode.getRightChild(), nodeToFind);
     }
 
-    public  <T extends Comparable> void preorder(Node node, T value) {
+    private <T> T delete(Node currentNode, Node nodeToFind) {
+        if(currentNode == null) {
+            throw new ElementNotFoundException(
+                    String.format(
+                            "Element not found: %s",
+                            nodeToFind.toString()));
+        }
+
+        if(currentNode.getValue().equals(nodeToFind.getValue())) {
+            deleteNode(currentNode);
+        }
+
+        if(isLessThanCurrentNode(currentNode, nodeToFind)) {
+            delete(currentNode.getLeftChild(), nodeToFind);
+        } else if(isGreaterThanCurrentNode(currentNode, nodeToFind)) {
+            delete(currentNode.getRightChild(), nodeToFind);
+        }
+
+        throw new ElementNotFoundException(
+                String.format(
+                        "Element not found: %s",
+                        nodeToFind.toString()));
+    }
+
+    private void deleteNode(Node node) {
+        if(node.isLeafNode()) {
+            if(node.getParent().getLeftChild() == node) {
+                node.getParent().setLeftChild(null);
+            } else {
+                node.getParent().setRightChild(null);
+            }
+        } else if(node.isLeftChildPresent() && !node.isRightChildPresent()) {
+            node.getLeftChild().setParent(node.getParent());
+            node = node.getLeftChild();
+        } else if(!node.isLeftChildPresent() && node.isRightChildPresent()) {
+            node.getRightChild().setParent(node.getParent());
+            node = node.getRightChild();
+
+        } else { // By process of elimination both children are present
+            Node smallestNode = findSmallestNode(node.getRightChild());
+            node = smallestNode;
+            delete(node, smallestNode);
+        }
+    }
+
+    private Node findSmallestNode(Node current) {
+        return !current.isLeftChildPresent() ? current : findSmallestNode(current.getLeftChild());
+    }
+
+    public <T extends Comparable> void preorder() {
+        preorder(this.root);
+    }
+
+    private  <T extends Comparable> void preorder(Node node) {
         if(node != null) {
             System.out.println(node.getValue());
-            preorder(node.getLeftChild(), value);
-            preorder(node.getRightChild(), value);
+            preorder(node.getLeftChild());
+            preorder(node.getRightChild());
         }
     }
 
@@ -83,30 +139,6 @@ public class BinarySearchTree {
 
     private boolean isLessThanCurrentNode(Node current, Node newNode) {
         return current.getValue().compareTo(newNode.getValue()) > 0;
-    }
-
-    private boolean isLeftChildPresent(Node node) {
-        try {
-            node.getLeftChild();
-            if(node.getLeftChild() == null) {
-                return false;
-            }
-            return true;
-        } catch (NullPointerException e) {
-            return false;
-        }
-    }
-
-    private boolean isRightChildPresent(Node node) {
-        try {
-            node.getRightChild();
-            if(node.getRightChild() == null) {
-                return false;
-            }
-            return true;
-        } catch (NullPointerException e) {
-            return false;
-        }
     }
 
     public boolean isNodeNull(Node node) {
