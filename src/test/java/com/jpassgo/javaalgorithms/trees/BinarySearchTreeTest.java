@@ -33,4 +33,24 @@ class BinarySearchTreeTest {
 
         assertThat(binarySearchTree.contains(15)).isEqualTo(true);
     }
+
+    @Test
+    void delete() {
+        BinarySearchTree binarySearchTree = new BinarySearchTree();
+
+        binarySearchTree.insert(100);
+        binarySearchTree.insert(10);
+        binarySearchTree.insert(15);
+        binarySearchTree.insert(1);
+        binarySearchTree.insert(123);
+        binarySearchTree.insert(34);
+        binarySearchTree.insert(5);
+
+        binarySearchTree.preorder();
+
+        System.out.println("******************************");
+        binarySearchTree.delete(15);
+
+        binarySearchTree.preorder();
+    }
 }
