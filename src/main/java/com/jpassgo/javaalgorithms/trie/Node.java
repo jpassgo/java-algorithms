@@ -1,10 +1,8 @@
 package com.jpassgo.javaalgorithms.trie;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
 public class Node {
 
   private char value;
@@ -15,8 +13,24 @@ public class Node {
     this.value = value;
   }
 
+  public Node() {
+  }
+
   public void addChild(Node node) {
-    int length = children.length - 1;
-    children[length + 1] = node;
+    for (int i = 0; i < children.length - 1; i++) {
+      if(children[i] == null) {
+        children[i] = node;
+      }
+    }
+  }
+
+  public int nonNullChildrenCount() {
+    int numberOfNonNullChildren = 0;
+    for(Node child : children) {
+      if(child != null) {
+        numberOfNonNullChildren++;
+      }
+    }
+    return numberOfNonNullChildren;
   }
 }
