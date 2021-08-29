@@ -56,6 +56,6 @@ public class Trie {
   }
 
   private boolean foundValueInTrie(char[] chars, int index, Node current) {
-    return current != null && index < chars.length && current.getValue() == chars[index];
+    return current != null && index < chars.length-1 && current.getValue() == chars[index];
   }
 }
