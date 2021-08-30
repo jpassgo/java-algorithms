@@ -8,8 +8,6 @@ public class Trie {
   private static final String RIGHT_TREE = "\\";
   private static final String SPACING = "  ";
 
-
-
   private Node root;
 
   public Trie() {
@@ -23,12 +21,20 @@ public class Trie {
   }
 
   private void insert(Node node, char[] chars, int index) {
-    for (Node child : node.getChildren()) {
+    for (int i = 0; i < node.getChildCount(); i++) {
+      Node child = node.getChildren().get(i);
       if(foundValueInTrie(chars, index, child)) {
         insert(child, chars, ++index);
-      } else if(index < chars.length) {
+      } else if(index < chars.length - 1) {
         node.addChild(new Node(chars[index]));
+        index++;
       }
+    }
+
+    if(node.getChildren().isEmpty() && index < chars.length) {
+      Node newChild = new Node(chars[index]);
+      node.addChild(newChild);
+      insert(newChild, chars, ++index);
     }
   }
 
@@ -37,6 +43,7 @@ public class Trie {
   }
 
   private String print(Node current, StringBuilder sb) {
+    sb.append(current.getValue());
     sb.append(current).append(NEW_LINE);
     sb.append(LEFT_TREE).append(SPACING);
 
