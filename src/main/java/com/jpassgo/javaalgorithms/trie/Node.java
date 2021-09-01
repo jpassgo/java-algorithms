@@ -1,36 +1,39 @@
 package com.jpassgo.javaalgorithms.trie;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
+@NoArgsConstructor
 public class Node {
 
   private char value;
   private Node parent;
-  private Node[] children = new Node[26];
+  private boolean isCompleteWord;
+  private Map<Character, Node> children = new HashMap();
 
   public Node(char value) {
     this.value = value;
   }
 
-  public Node() {
+  public Node(char value, Node parent) {
+    this.value = value;
+    this.parent = parent;
+    this.parent.addChild(this);
   }
 
   public void addChild(Node node) {
-    for (int i = 0; i < children.length - 1; i++) {
-      if(children[i] == null) {
-        children[i] = node;
-      }
-    }
+    this.children.put(Character.valueOf(node.getValue()), node);
   }
 
-  public int nonNullChildrenCount() {
-    int numberOfNonNullChildren = 0;
-    for(Node child : children) {
-      if(child != null) {
-        numberOfNonNullChildren++;
-      }
-    }
-    return numberOfNonNullChildren;
+  public boolean isCompleteWord() {
+    return isCompleteWord;
+  }
+
+  public void setIsCompleteWord() {
+    isCompleteWord = true;
   }
 }
