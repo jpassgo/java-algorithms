@@ -18,7 +18,6 @@ class TrieTest {
     Trie trie = new Trie();
     trie.insert("hello");
 
-    System.out.println(trie.print());
+    //    System.out.println(trie.print());
   }
-
 }
