@@ -22,17 +22,17 @@ public class Trie {
 
   private void insert(Node node, char[] chars, int index) {
     Character character = null;
-    if(index <= chars.length - 1) {
-       character = Character.valueOf(chars[index]);
+    if (index <= chars.length - 1) {
+      character = Character.valueOf(chars[index]);
     }
 
-    if(node.getChildren().containsKey(Character.valueOf(chars[index]))) {
+    if (node.getChildren().containsKey(Character.valueOf(chars[index]))) {
       insert(node.getChildren().get(character), chars, ++index);
-    } else if(index < chars.length - 1) {
+    } else if (index < chars.length - 1) {
       Node newNode = new Node(character);
       node.addChild(newNode);
       insert(newNode, chars, ++index);
-    } else if(index == chars.length - 1) {
+    } else if (index == chars.length - 1) {
       Node newNode = new Node(character);
       node.addChild(newNode);
       node.setIsCompleteWord();
