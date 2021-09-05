@@ -1,10 +1,9 @@
 package com.jpassgo.javaalgorithms.trie;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
