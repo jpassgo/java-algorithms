@@ -53,4 +53,34 @@ public class Node<T extends Comparable> {
 
         return this;
     }
+
+    private Node rightLeftCase(Node<T> tNode) {
+        return null;
+    }
+
+    private Node rightRightCase(Node<T> tNode) {
+        return null;
+    }
+
+    private Node leftRightCase(Node<T> tNode) {
+        return null;
+    }
+
+    private Node leftRotation(Node node) {
+        return null;
+    }
+
+    private Node leftLeftCase(Node node) {
+        return rightRotation(node);
+    }
+
+    private Node rightRotation(Node node) {
+        Node parent = node.getLeftChild();
+        node.setLeftChild(parent.getRightChild());
+        parent.setRightChild(node);
+
+        node.updateHeight();
+        node.updateBalanceFactor();
+        return parent;
+    }
 }
