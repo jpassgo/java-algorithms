@@ -4,28 +4,32 @@ public class AVLTree {
 
     private Node root;
 
+    public AVLTree() {
+        this.root = root;
+    }
 
-    public <T extends Comparable> Node insert(T value) {
-        Node<T> node;
-        if(value == null || !contains(value)) {
+    public <T extends Comparable> boolean insert(T value) {
+        if(value == null || contains(value)) {
             return false;
+        } else {
+            this.root = insert(root, value);
         }
 
-        return insert(root, value);
+        return true;
     }
 
     private <T extends Comparable> Node insert(Node node, T value) {
         if(node == null) {
             return new Node(value);
         }
-        if(node.getValue().compareTo(value) < 0) {
-            Node newLeftChild = null;
+        if(node.getValue().compareTo(value) > 0) {
+            Node newLeftChild = new Node(value);
             if(node.getLeftChild() != null) {
                 newLeftChild = insert(node.getLeftChild(), value);
             }
             node.setLeftChild(newLeftChild);
-        } else if(node.getValue().compareTo(value) > 0) {
-            Node newRightChild = null;
+        } else if(node.getValue().compareTo(value) < 0) {
+            Node newRightChild =  new Node(value);
             if(node.getRightChild() != null) {
                 newRightChild = insert(node.getRightChild(), value);
             }
@@ -43,14 +47,14 @@ public class AVLTree {
     }
 
     private <T extends Comparable> boolean contains(Node node, T value) {
-        if(node.getValue() == null) {
+        if(this.root == null || node.getValue() == null) {
             return false;
         }
-        if(node.getValue().compareTo(value) < 0) {
+        if(node.getValue().compareTo(value) > 0) {
             if(node.getLeftChild() != null) {
                 contains(node.getLeftChild(), value);
             }
-        } else if(node.getValue().compareTo(value) > 0) {
+        } else if(node.getValue().compareTo(value) < 0) {
             if(node.getRightChild() != null) {
                 contains(node.getRightChild(), value);
             }
