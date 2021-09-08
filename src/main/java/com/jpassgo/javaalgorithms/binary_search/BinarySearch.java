@@ -1,8 +1,8 @@
 package com.jpassgo.javaalgorithms.binary_search;
 
-import java.util.Random;
-
 import static com.jpassgo.javaalgorithms.quick_sort.QuickSort.quickSort;
+
+import java.util.Random;
 
 public class BinarySearch {
 
