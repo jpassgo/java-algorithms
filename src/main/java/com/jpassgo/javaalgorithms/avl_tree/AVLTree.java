@@ -4,8 +4,13 @@ public class AVLTree {
 
   private Node root;
 
+
   public AVLTree() {
     this.root = root;
+  }
+
+  public int getBalanceFactor() {
+    return root.getBalanceFactor();
   }
 
   public <T extends Comparable> boolean insert(T value) {
