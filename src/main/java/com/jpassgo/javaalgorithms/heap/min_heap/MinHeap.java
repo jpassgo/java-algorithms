@@ -1,5 +1,8 @@
 package com.jpassgo.javaalgorithms.heap.min_heap;
 
+import lombok.Data;
+
+@Data
 public class MinHeap {
   private int[] heap;
   private int size;

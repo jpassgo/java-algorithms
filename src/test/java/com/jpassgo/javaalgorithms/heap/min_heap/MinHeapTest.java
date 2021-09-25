@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @ExtendWith(MockitoExtension.class)
 class MinHeapTest {
 
@@ -16,5 +18,7 @@ class MinHeapTest {
     minHeap.insert(90);
     minHeap.insert(2);
     minHeap.insert(9);
+
+    assertThat(minHeap.getSize()).isEqualTo(6);
   }
 }
