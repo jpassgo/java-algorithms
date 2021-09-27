@@ -1,16 +1,20 @@
 package com.jpassgo.javaalgorithms.date_stuff;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.time.Clock;
 import java.time.LocalDateTime;
 
+@Component
+@AllArgsConstructor
 public class DateChecker {
 
-    public String isMinuteEven() {
-        LocalDateTime dateTime = LocalDateTime.now();
+    private Clock clock;
 
-        boolean isEven = switch (dateTime) {
-            case dateTime.getMinute() % 2 == 0 -> "minute is even";
-            case dateTime.getMinute() % 2 != 0 -> "minute is odd";
-            default -> "Something went wrong here";
-        };
+    public boolean isMinuteEven() {
+        LocalDateTime dateTime = LocalDateTime.now(clock);
+
+        return dateTime.getMinute() % 2 == 0;
     }
 }
