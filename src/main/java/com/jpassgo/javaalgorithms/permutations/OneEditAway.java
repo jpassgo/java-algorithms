@@ -38,7 +38,7 @@ public class OneEditAway {
 
             int j = 0;
             for (int i = 0; i < s1Chars.length-1; i++) {
-                if( (j < s2Chars.length -1) && s1Chars[i] == s2Chars[j]) {
+                if( (j < s2Chars.length -1) && big[i] == small[j]) {
                     j++;
                 } else {
                     diff++;
