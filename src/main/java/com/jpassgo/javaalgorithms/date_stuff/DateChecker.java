@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class DateChecker {
 
-    private Clock clock;
+  private Clock clock;
 
-    public boolean isMinuteEven() {
-        LocalDateTime dateTime = LocalDateTime.now(clock);
+  public boolean isMinuteEven() {
+    LocalDateTime dateTime = LocalDateTime.now(clock);
 
-        return dateTime.getMinute() % 2 == 0;
-    }
+    return dateTime.getMinute() % 2 == 0;
+  }
 }
