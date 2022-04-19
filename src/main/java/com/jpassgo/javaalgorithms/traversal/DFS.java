@@ -13,6 +13,10 @@ public class DFS {
         System.out.println(depthFirstSearch(node, 600));
         System.out.println(depthFirstSearch(node, 60));
         System.out.println(depthFirstSearch(node, 115));
+
+        System.out.println(recursiveDFS(node, 600));
+        System.out.println(recursiveDFS(node, 60));
+        System.out.println(recursiveDFS(node, 115));
     }
 
     public static <T extends Comparable> boolean depthFirstSearch(TreeNode node, T value) {
@@ -35,5 +39,25 @@ public class DFS {
         }
 
         return false;
+    }
+
+    public static <T extends Comparable> boolean recursiveDFS(TreeNode node, T value) {
+        return recursiveDFS(node, value, false);
+    }
+
+    public static <T extends Comparable> boolean recursiveDFS(TreeNode node, T value, boolean found) {
+        if (value.compareTo(node.getValue()) == 0) {
+            found = true;
+        }
+
+        if (found == false && node.getLeft() != null) {
+            return recursiveDFS(node.getLeft(), value, found);
+        }
+
+        if (found == false && node.getRight() != null) {
+            return recursiveDFS(node.getRight(), value, found);
+        }
+
+        return found;
     }
 }
